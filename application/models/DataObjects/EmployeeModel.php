@@ -1,0 +1,37 @@
+<?php 
+
+class EmployeeModel extends MY_Model{
+
+	function getAll(){
+		// $sql = "SELECT 'firstName,lastName' FROM employees";
+		// $query = $this->db->query($sql);
+
+		// SELECT firstName, lastName, email, o.city
+		// FROM employees e INNER JOIN offices o ON e.officeCode = o.officeCode
+
+		$query = $this->db->select("CONCAT_WS(' ',firstName, lastName) as name, email, o.city")
+						  ->from('employees e')
+						  ->join('offices o', 'e.officeCode = o.officeCode')
+						  ->limit(5)
+						  ->get();
+
+		return $query->result();
+	}
+
+	function byOffice($officeCode){
+		$query = $this->db->select("CONCAT_WS(' ',firstName, lastName) as name, email, o.city")
+						  ->from('employees e')
+						  ->join('offices o', 'e.officeCode = o.officeCode')
+						  ->where('o.officeCode', $officeCode)
+						  ->get();
+
+		return $query->result();
+
+	}
+
+
+	// base_url/employee/insert
+	function insert($data){
+		$this->db->insert('employees', $data);
+	}
+}
