@@ -9,7 +9,7 @@ class EmployeeModel extends MY_Model{
 		// SELECT firstName, lastName, email, o.city
 		// FROM employees e INNER JOIN offices o ON e.officeCode = o.officeCode
 
-		$query = $this->db->select("CONCAT_WS(' ',firstName, lastName) as name, email, o.city")
+		$query = $this->db->select("e.employeeNumber id, CONCAT_WS(' ',firstName, lastName) as name, email, o.city")
 						  ->from('employees e')
 						  ->join('offices o', 'e.officeCode = o.officeCode')
 						  ->limit(5)
@@ -19,7 +19,7 @@ class EmployeeModel extends MY_Model{
 	}
 
 	function byOffice($officeCode){
-		$query = $this->db->select("CONCAT_WS(' ',firstName, lastName) as name, email, o.city")
+		$query = $this->db->select("e.employeeNumber id, CONCAT_WS(' ',firstName, lastName) as name, email, o.city")
 						  ->from('employees e')
 						  ->join('offices o', 'e.officeCode = o.officeCode')
 						  ->where('o.officeCode', $officeCode)
@@ -27,6 +27,12 @@ class EmployeeModel extends MY_Model{
 
 		return $query->result();
 
+	}
+
+	function byId($id){
+		$query = $this->db->where('employeeNumber', $id)
+						  ->get('employees');
+		return $query->row();
 	}
 
 
