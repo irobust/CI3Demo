@@ -17,7 +17,7 @@ class MY_Pagination extends CI_Pagination{
 	protected $full_tag_open = '<ul class="pagination">';
 	protected $full_tag_close = '</ul>';
 	
-	protected $num_links = 4;
+	protected $num_links = 2; //จำนวน links = 2n+1
 
 	public $per_page = PER_PAGE;
 	protected $use_page_numbers = TRUE;
@@ -61,7 +61,8 @@ class MY_Pagination extends CI_Pagination{
 				$this->uri->segment++;
 			}
 		}
-
+		// site_url()
+		// $this->CI->config->site_url()
 		$controller = $this->CI->router->fetch_class();
 		$action		= $this->CI->router->fetch_method();
 		$this->base_url = site_url($controller.'/'.$action.$tail);
@@ -76,6 +77,13 @@ class MY_Pagination extends CI_Pagination{
 	 * @return	string
 	 */
 	public function create_links(){
+		// Set base URL
+		if(empty($this->base_url)){
+			$controller = $this->CI->router->fetch_class();
+			$action		= $this->CI->router->fetch_method();
+			$this->base_url = site_url($controller.'/'.$action);
+		}
+
 		// If our item count or per-page total is zero there is no need to continue.
 		// Note: DO NOT change the operator to === here!
 		if ($this->total_rows == 0 OR $this->per_page == 0)
