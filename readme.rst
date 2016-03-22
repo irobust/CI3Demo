@@ -2,9 +2,9 @@
 CodeIgniter Demo
 ###################
 
-ตัวอย่างการใช้งาน Codeigniter ในหลักสูตร `Codeigniter <http://irobust.co.th/courses/CodeIgniter.php#start>` โดยในตัวอย่างนี้จะเอา HMVC และ Eloquent เข้ามาใช้งานใน Project ด้วย
+ตัวอย่างการใช้งาน Codeigniter ในหลักสูตร `Codeigniter <http://irobust.co.th/courses/CodeIgniter.php#start>`_ โดยในตัวอย่างนี้จะเอา HMVC และ Eloquent เข้ามาใช้งานใน Project ด้วย
 
-เข้าไปดูรายละเอียดเพิ่มเติมได้ที่ `<http://www.irobust.co.th>`
+เข้าไปดูรายละเอียดเพิ่มเติมได้ที่ `<http://www.irobust.co.th>`_
 
 *******************
 Server Requirements
